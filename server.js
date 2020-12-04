@@ -20,6 +20,7 @@ app.use(bodyParser.json())
 
 const meetings = require('./routes/meeting/meetings');
 const token = require('./routes/token');
+const zoom = require('./routes/meeting/zoom');
 app.use(express.json());
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
@@ -28,6 +29,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/v1/meeting',tokenMiddleware, meetings);
 
 app.use('/api/v1/gen_token',token);
+app.use(zoom);
 
 
 // Configuration for deploymnet of on server and run on one port
